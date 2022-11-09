@@ -9,6 +9,8 @@ class CIPSskip(nn.Module):
                  activation=None, channel_multiplier=2, **kwargs):
         super(CIPSskip, self).__init__()
 
+        self.tanh = nn.Tanh()
+
         self.size = size
         demodulate = True
         self.demodulate = demodulate
@@ -104,4 +106,4 @@ class CIPSskip(nn.Module):
         if return_latents:
             return rgb, latent
         else:
-            return rgb, None
+            return self.tanh(rgb), None
